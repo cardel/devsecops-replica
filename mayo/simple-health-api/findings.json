@@ -1,0 +1,1268 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-05-21T21:11:40.468225",
+  "pipeline_run": "26253101059",
+  "environment": "staging",
+  "service": "simple-health-api",
+  "business_criticality": "low",
+  "summary": {
+    "total": 17,
+    "by_severity": {
+      "CRITICAL": 0,
+      "HIGH": 11,
+      "MEDIUM": 2,
+      "LOW": 3,
+      "INFO": 1
+    },
+    "by_tool": {
+      "semgrep": 0,
+      "trivy": 13,
+      "zap": 2,
+      "nuclei": 2
+    },
+    "by_category": {
+      "A06:2021 – Vulnerable and Outdated Components": 14,
+      "A05:2021 – Security Misconfiguration": 2,
+      "A03:2021 – Injection": 1
+    },
+    "critical_and_high": 11
+  },
+  "findings": [
+    {
+      "id": "TRI-F0751EFB",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "MEDIUM",
+      "cvss_score": 7.5,
+      "title": "CVE-2026-33750 – brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern",
+      "description": "The brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to versions 5.0.5, 3.0.2, 2.0.3, and 1.1.13, a brace pattern with a zero step value (e.g., `{1..2..0}`) causes the sequence generation loop to run indefinitely, making the process hang for seconds and allocate heaps of memory. Versions 5.0.5, 3.0.2, 2.0.3, and 1.1.13 fix the issue. As a workaround, sanitize strings passed to `expand()` to ensure a step value of `0` is not used.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: brace-expansion v2.0.1 | Fix: 5.0.5, 3.0.2, 2.0.3, 1.1.13",
+      "remediation": "Actualizar brace-expansion de 2.0.1 a 5.0.5, 3.0.2, 2.0.3, 1.1.13",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-33750",
+        "VendorIDs": [
+          "GHSA-f886-m6hf-6m8v"
+        ],
+        "PkgID": "brace-expansion@2.0.1",
+        "PkgName": "brace-expansion",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/brace-expansion/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/brace-expansion@2.0.1",
+          "UID": "becc2016f5337669"
+        },
+        "InstalledVersion": "2.0.1",
+        "FixedVersion": "5.0.5, 3.0.2, 2.0.3, 1.1.13",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-33750",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:a7057e923321245e67c768a19a81e175bc8904c4779bcde270c3048d09fdc845",
+        "Title": "brace-expansion: brace-expansion: Denial of Service via zero step value in brace pattern",
+        "Description": "The brace-expansion library generates arbitrary strings containing a common prefix and suffix. Prior to versions 5.0.5, 3.0.2, 2.0.3, and 1.1.13, a brace pattern with a zero step value (e.g., `{1..2..0}`) causes the sequence generation loop to run indefinitely, making the process hang for seconds and allocate heaps of memory. Versions 5.0.5, 3.0.2, 2.0.3, and 1.1.13 fix the issue. As a workaround, sanitize strings passed to `expand()` to ensure a step value of `0` is not used.",
+        "Severity": "MEDIUM",
+        "CweIDs": [
+          "CWE-400"
+        ],
+        "VendorSeverity": {
+          "ghsa": 2,
+          "nvd": 3,
+          "redhat": 2
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "V3Score": 6.5
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "V3Score": 7.5
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "V3Score": 6.5
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-33750",
+          "https://github.com/juliangruber/brace-expansion",
+          "https://github.com/juliangruber/brace-expansion/blob/daa71bcb4a30a2df9bcb7f7b8daaf2ab30e5794a/src/index.ts#L107-L113",
+          "https://github.com/juliangruber/brace-expansion/blob/daa71bcb4a30a2df9bcb7f7b8daaf2ab30e5794a/src/index.ts#L184",
+          "https://github.com/juliangruber/brace-expansion/commit/311ac0d54994158c0a384e286a7d6cbb17ee8ed5",
+          "https://github.com/juliangruber/brace-expansion/commit/7fd684f89fdde3549563d0a6522226a9189472a2",
+          "https://github.com/juliangruber/brace-expansion/commit/b9cacd9e55e7a1fa588fe4b7bb1159d52f1d902a",
+          "https://github.com/juliangruber/brace-expansion/issues/98",
+          "https://github.com/juliangruber/brace-expansion/pull/95",
+          "https://github.com/juliangruber/brace-expansion/pull/96",
+          "https://github.com/juliangruber/brace-expansion/pull/97",
+          "https://github.com/juliangruber/brace-expansion/security/advisories/GHSA-f886-m6hf-6m8v",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-33750",
+          "https://www.cve.org/CVERecord?id=CVE-2026-33750"
+        ],
+        "PublishedDate": "2026-03-27T15:16:57.297Z",
+        "LastModifiedDate": "2026-04-22T14:23:19.11Z"
+      }
+    },
+    {
+      "id": "TRI-E8929BCB",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 4.4,
+      "title": "CVE-2024-21538 – cross-spawn: regular expression denial of service",
+      "description": "Versions of the package cross-spawn before 6.0.6, from 7.0.0 and before 7.0.5 are vulnerable to Regular Expression Denial of Service (ReDoS) due to improper input sanitization. An attacker can increase the CPU usage and crash the program by crafting a very large and well crafted string.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: cross-spawn v7.0.3 | Fix: 7.0.5, 6.0.6",
+      "remediation": "Actualizar cross-spawn de 7.0.3 a 7.0.5, 6.0.6",
+      "raw": {
+        "VulnerabilityID": "CVE-2024-21538",
+        "VendorIDs": [
+          "GHSA-3xgq-45jj-v275"
+        ],
+        "PkgID": "cross-spawn@7.0.3",
+        "PkgName": "cross-spawn",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/cross-spawn/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/cross-spawn@7.0.3",
+          "UID": "dfc86ed0cb153668"
+        },
+        "InstalledVersion": "7.0.3",
+        "FixedVersion": "7.0.5, 6.0.6",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-21538",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:36e3baf44956686ce506368a2097ead904d01db3783f9b1e3745adf6cee629cd",
+        "Title": "cross-spawn: regular expression denial of service",
+        "Description": "Versions of the package cross-spawn before 6.0.6, from 7.0.0 and before 7.0.5 are vulnerable to Regular Expression Denial of Service (ReDoS) due to improper input sanitization. An attacker can increase the CPU usage and crash the program by crafting a very large and well crafted string.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-1333"
+        ],
+        "VendorSeverity": {
+          "amazon": 2,
+          "azure": 3,
+          "cbl-mariner": 3,
+          "ghsa": 3,
+          "redhat": 1
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:P",
+            "V3Score": 7.5,
+            "V40Score": 7.7
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:R/S:U/C:N/I:N/A:H",
+            "V3Score": 4.4
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2024-21538",
+          "https://github.com/moxystudio/node-cross-spawn",
+          "https://github.com/moxystudio/node-cross-spawn/commit/5ff3a07d9add449021d806e45c4168203aa833ff",
+          "https://github.com/moxystudio/node-cross-spawn/commit/640d391fde65388548601d95abedccc12943374f",
+          "https://github.com/moxystudio/node-cross-spawn/commit/d35c865b877d2f9ded7c1ed87521c2fdb689c8dd",
+          "https://github.com/moxystudio/node-cross-spawn/issues/165",
+          "https://github.com/moxystudio/node-cross-spawn/pull/160",
+          "https://nvd.nist.gov/vuln/detail/CVE-2024-21538",
+          "https://security.snyk.io/vuln/SNYK-JAVA-ORGWEBJARSNPM-8366349",
+          "https://security.snyk.io/vuln/SNYK-JS-CROSSSPAWN-8303230",
+          "https://www.cve.org/CVERecord?id=CVE-2024-21538"
+        ],
+        "PublishedDate": "2024-11-08T05:15:06.453Z",
+        "LastModifiedDate": "2026-04-15T00:35:42.02Z"
+      }
+    },
+    {
+      "id": "TRI-CD8B31C7",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 7.5,
+      "title": "CVE-2025-64756 – glob: glob: Command Injection Vulnerability via Malicious Filenames",
+      "description": "Glob matches files using patterns the shell uses. Starting in version 10.2.0 and prior to versions 10.5.0 and 11.1.0, the glob CLI contains a command injection vulnerability in its -c/--cmd option that allows arbitrary command execution when processing files with malicious names. When glob -c <command> <patterns> are used, matched filenames are passed to a shell with shell: true, enabling shell metacharacters in filenames to trigger command injection and achieve arbitrary code execution under the user or CI account privileges. This issue has been patched in versions 10.5.0 and 11.1.0.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: glob v10.4.2 | Fix: 11.1.0, 10.5.0",
+      "remediation": "Actualizar glob de 10.4.2 a 11.1.0, 10.5.0",
+      "raw": {
+        "VulnerabilityID": "CVE-2025-64756",
+        "VendorIDs": [
+          "GHSA-5j98-mcp5-4vw2"
+        ],
+        "PkgID": "glob@10.4.2",
+        "PkgName": "glob",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/glob/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/glob@10.4.2",
+          "UID": "2e1bc350feb83f8f"
+        },
+        "InstalledVersion": "10.4.2",
+        "FixedVersion": "11.1.0, 10.5.0",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-64756",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:009ad4c0b0df69de437db23a6a768a5720d952bed0b2cf7baa225a292a22230c",
+        "Title": "glob: glob: Command Injection Vulnerability via Malicious Filenames",
+        "Description": "Glob matches files using patterns the shell uses. Starting in version 10.2.0 and prior to versions 10.5.0 and 11.1.0, the glob CLI contains a command injection vulnerability in its -c/--cmd option that allows arbitrary command execution when processing files with malicious names. When glob -c <command> <patterns> are used, matched filenames are passed to a shell with shell: true, enabling shell metacharacters in filenames to trigger command injection and achieve arbitrary code execution under the user or CI account privileges. This issue has been patched in versions 10.5.0 and 11.1.0.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-78"
+        ],
+        "VendorSeverity": {
+          "ghsa": 3,
+          "redhat": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "V3Score": 7.5
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+            "V3Score": 7.5
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2025-64756",
+          "https://github.com/isaacs/node-glob",
+          "https://github.com/isaacs/node-glob/commit/1e4e297342a09f2aa0ced87fcd4a70ddc325d75f",
+          "https://github.com/isaacs/node-glob/commit/47473c046b91c67269df7a66eab782a6c2716146",
+          "https://github.com/isaacs/node-glob/security/advisories/GHSA-5j98-mcp5-4vw2",
+          "https://nvd.nist.gov/vuln/detail/CVE-2025-64756",
+          "https://www.cve.org/CVERecord?id=CVE-2025-64756"
+        ],
+        "PublishedDate": "2025-11-17T18:15:58.27Z",
+        "LastModifiedDate": "2025-12-02T19:34:43.27Z"
+      }
+    },
+    {
+      "id": "TRI-668BEB2E",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "MEDIUM",
+      "cvss_score": 6.1,
+      "title": "CVE-2026-42338 – ip-address is a library for parsing and manipulating IPv4 and IPv6 add ...",
+      "description": "ip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.1.1, Address6.group() and Address6.link() do not HTML-escape attacker-controlled content before embedding it in the HTML strings they return, and AddressError.parseMessage (emitted by the Address6 constructor for invalid input) can contain unescaped attacker-controlled content in one branch. An application that (1) passes untrusted input to Address6 and (2) renders the output of these methods, or the thrown error's parseMessage, as HTML (e.g. via innerHTML) is vulnerable to cross-site scripting. This vulnerability is fixed in 10.1.1.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: ip-address v9.0.5 | Fix: 10.1.1",
+      "remediation": "Actualizar ip-address de 9.0.5 a 10.1.1",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-42338",
+        "VendorIDs": [
+          "GHSA-v2v4-37r5-5v8g"
+        ],
+        "PkgID": "ip-address@9.0.5",
+        "PkgName": "ip-address",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/ip-address/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/ip-address@9.0.5",
+          "UID": "5b39cd72dd1fbc6b"
+        },
+        "InstalledVersion": "9.0.5",
+        "FixedVersion": "10.1.1",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-42338",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:320ecd494badad3e368e0c504f627ec1756dfa1a9bad29b087ec16a08fa39e7d",
+        "Title": "ip-address is a library for parsing and manipulating IPv4 and IPv6 add ...",
+        "Description": "ip-address is a library for parsing and manipulating IPv4 and IPv6 addresses in JavaScript. Prior to 10.1.1, Address6.group() and Address6.link() do not HTML-escape attacker-controlled content before embedding it in the HTML strings they return, and AddressError.parseMessage (emitted by the Address6 constructor for invalid input) can contain unescaped attacker-controlled content in one branch. An application that (1) passes untrusted input to Address6 and (2) renders the output of these methods, or the thrown error's parseMessage, as HTML (e.g. via innerHTML) is vulnerable to cross-site scripting. This vulnerability is fixed in 10.1.1.",
+        "Severity": "MEDIUM",
+        "CweIDs": [
+          "CWE-79"
+        ],
+        "VendorSeverity": {
+          "ghsa": 2,
+          "nvd": 2
+        },
+        "CVSS": {
+          "ghsa": {
+            "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N",
+            "V40Score": 5.3
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+            "V3Score": 6.1
+          }
+        },
+        "References": [
+          "https://github.com/beaugunderson/ip-address",
+          "https://github.com/beaugunderson/ip-address/security/advisories/GHSA-v2v4-37r5-5v8g",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-42338"
+        ],
+        "PublishedDate": "2026-05-12T20:16:41.13Z",
+        "LastModifiedDate": "2026-05-19T20:04:05.337Z"
+      }
+    },
+    {
+      "id": "TRI-4DBC63E3",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 7.5,
+      "title": "CVE-2026-26996 – minimatch: minimatch: Denial of Service via specially crafted glob patterns",
+      "description": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Versions 10.2.0 and below are vulnerable to Regular Expression Denial of Service (ReDoS) when a glob pattern contains many consecutive * wildcards followed by a literal character that doesn't appear in the test string. Each * compiles to a separate [^/]*? regex group, and when the match fails, V8's regex engine backtracks exponentially across all possible splits. The time complexity is O(4^N) where N is the number of * characters. With N=15, a single minimatch() call takes ~2 seconds. With N=34, it hangs effectively forever. Any application that passes user-controlled strings to minimatch() as the pattern argument is vulnerable to DoS. This issue has been fixed in version 10.2.1.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: minimatch v9.0.5 | Fix: 10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3",
+      "remediation": "Actualizar minimatch de 9.0.5 a 10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-26996",
+        "VendorIDs": [
+          "GHSA-3ppc-4f35-3m26"
+        ],
+        "PkgID": "minimatch@9.0.5",
+        "PkgName": "minimatch",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/minimatch/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/minimatch@9.0.5",
+          "UID": "3c2e4d9d9793eb0b"
+        },
+        "InstalledVersion": "9.0.5",
+        "FixedVersion": "10.2.1, 9.0.6, 8.0.5, 7.4.7, 6.2.1, 5.1.7, 4.2.4, 3.1.3",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-26996",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:94a337f393f07f0c602abe9fe5bcc513c58ebec77dd78ee901071e83608e34d6",
+        "Title": "minimatch: minimatch: Denial of Service via specially crafted glob patterns",
+        "Description": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Versions 10.2.0 and below are vulnerable to Regular Expression Denial of Service (ReDoS) when a glob pattern contains many consecutive * wildcards followed by a literal character that doesn't appear in the test string. Each * compiles to a separate [^/]*? regex group, and when the match fails, V8's regex engine backtracks exponentially across all possible splits. The time complexity is O(4^N) where N is the number of * characters. With N=15, a single minimatch() call takes ~2 seconds. With N=34, it hangs effectively forever. Any application that passes user-controlled strings to minimatch() as the pattern argument is vulnerable to DoS. This issue has been fixed in version 10.2.1.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-1333"
+        ],
+        "VendorSeverity": {
+          "alma": 3,
+          "ghsa": 3,
+          "nvd": 3,
+          "oracle-oval": 3,
+          "redhat": 2,
+          "rocky": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+            "V40Score": 8.7
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "V3Score": 7.5
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "V3Score": 6.5
+          }
+        },
+        "References": [
+          "https://access.redhat.com/errata/RHSA-2026:7896",
+          "https://access.redhat.com/security/cve/CVE-2026-26996",
+          "https://bugzilla.redhat.com/2441268",
+          "https://bugzilla.redhat.com/2442922",
+          "https://bugzilla.redhat.com/2448754",
+          "https://bugzilla.redhat.com/2453151",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2441268",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2442922",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2448754",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2453151",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-21710",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-26996",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27135",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27904",
+          "https://errata.almalinux.org/9/ALSA-2026-7896.html",
+          "https://errata.rockylinux.org/RLSA-2026:7896",
+          "https://github.com/isaacs/minimatch",
+          "https://github.com/isaacs/minimatch/commit/2e111f3a79abc00fa73110195de2c0f2351904f5",
+          "https://github.com/isaacs/minimatch/security/advisories/GHSA-3ppc-4f35-3m26",
+          "https://linux.oracle.com/cve/CVE-2026-26996.html",
+          "https://linux.oracle.com/errata/ELSA-2026-8339.html",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-26996",
+          "https://www.cve.org/CVERecord?id=CVE-2026-26996"
+        ],
+        "PublishedDate": "2026-02-20T03:16:01.62Z",
+        "LastModifiedDate": "2026-03-06T21:32:10.65Z"
+      }
+    },
+    {
+      "id": "TRI-A158C435",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 5.9,
+      "title": "CVE-2026-27903 – minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns",
+      "description": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to version 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.3, `matchOne()` performs unbounded recursive backtracking when a glob pattern contains multiple non-adjacent `**` (GLOBSTAR) segments and the input path does not match. The time complexity is O(C(n, k)) -- binomial -- where `n` is the number of path segments and `k` is the number of globstars. With k=11 and n=30, a call to the default `minimatch()` API stalls for roughly 5 seconds. With k=13, it exceeds 15 seconds. No memoization or call budget exists to bound this behavior. Any application where an attacker can influence the glob pattern passed to `minimatch()` is vulnerable. The realistic attack surface includes build tools and task runners that accept user-supplied glob arguments (ESLint, Webpack, Rollup config), multi-tenant systems where one tenant configures glob-based rules that run in a shared process, admin or developer interfaces that accept ignore-rule or filter configuration as globs, and CI/CD pipelines that evaluate user-submitted config files containing glob patterns. An attacker who can place a crafted pattern into any of these paths can stall the Node.js event loop for tens of seconds per invocation. The pattern is 56 bytes for a 5-second stall and does not require authentication in contexts where pattern input is part of the feature. Versions 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.3 fix the issue.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: minimatch v9.0.5 | Fix: 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3",
+      "remediation": "Actualizar minimatch de 9.0.5 a 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-27903",
+        "VendorIDs": [
+          "GHSA-7r86-cg39-jmmj"
+        ],
+        "PkgID": "minimatch@9.0.5",
+        "PkgName": "minimatch",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/minimatch/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/minimatch@9.0.5",
+          "UID": "3c2e4d9d9793eb0b"
+        },
+        "InstalledVersion": "9.0.5",
+        "FixedVersion": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.3",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27903",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:c200d51a632364406bc26d9cbaec71ce6ef1f415baecb99d50722cd68eceac4e",
+        "Title": "minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns",
+        "Description": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to version 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.3, `matchOne()` performs unbounded recursive backtracking when a glob pattern contains multiple non-adjacent `**` (GLOBSTAR) segments and the input path does not match. The time complexity is O(C(n, k)) -- binomial -- where `n` is the number of path segments and `k` is the number of globstars. With k=11 and n=30, a call to the default `minimatch()` API stalls for roughly 5 seconds. With k=13, it exceeds 15 seconds. No memoization or call budget exists to bound this behavior. Any application where an attacker can influence the glob pattern passed to `minimatch()` is vulnerable. The realistic attack surface includes build tools and task runners that accept user-supplied glob arguments (ESLint, Webpack, Rollup config), multi-tenant systems where one tenant configures glob-based rules that run in a shared process, admin or developer interfaces that accept ignore-rule or filter configuration as globs, and CI/CD pipelines that evaluate user-submitted config files containing glob patterns. An attacker who can place a crafted pattern into any of these paths can stall the Node.js event loop for tens of seconds per invocation. The pattern is 56 bytes for a 5-second stall and does not require authentication in contexts where pattern input is part of the feature. Versions 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.3 fix the issue.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-407"
+        ],
+        "VendorSeverity": {
+          "ghsa": 3,
+          "redhat": 2
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "V3Score": 7.5
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "V3Score": 5.9
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-27903",
+          "https://github.com/isaacs/minimatch",
+          "https://github.com/isaacs/minimatch/commit/0bf499aa45f5059b56809cc3b75ff3eafeb8d748",
+          "https://github.com/isaacs/minimatch/security/advisories/GHSA-7r86-cg39-jmmj",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-27903",
+          "https://www.cve.org/CVERecord?id=CVE-2026-27903"
+        ],
+        "PublishedDate": "2026-02-26T02:16:21.353Z",
+        "LastModifiedDate": "2026-02-27T17:21:22.37Z"
+      }
+    },
+    {
+      "id": "TRI-69E1F675",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 6.5,
+      "title": "CVE-2026-27904 – minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions",
+      "description": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to version 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.4, nested `*()` extglobs produce regexps with nested unbounded quantifiers (e.g. `(?:(?:a|b)*)*`), which exhibit catastrophic backtracking in V8. With a 12-byte pattern `*(*(*(a|b)))` and an 18-byte non-matching input, `minimatch()` stalls for over 7 seconds. Adding a single nesting level or a few input characters pushes this to minutes. This is the most severe finding: it is triggered by the default `minimatch()` API with no special options, and the minimum viable pattern is only 12 bytes. The same issue affects `+()` extglobs equally. Versions 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.4 fix the issue.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: minimatch v9.0.5 | Fix: 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4",
+      "remediation": "Actualizar minimatch de 9.0.5 a 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-27904",
+        "VendorIDs": [
+          "GHSA-23c5-xmqv-rm74"
+        ],
+        "PkgID": "minimatch@9.0.5",
+        "PkgName": "minimatch",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/minimatch/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/minimatch@9.0.5",
+          "UID": "3c2e4d9d9793eb0b"
+        },
+        "InstalledVersion": "9.0.5",
+        "FixedVersion": "10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, 3.1.4",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-27904",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:f7e66348668b4621a42065580409c8f63811b48daa5ad7e347efbd9619e94828",
+        "Title": "minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions",
+        "Description": "minimatch is a minimal matching utility for converting glob expressions into JavaScript RegExp objects. Prior to version 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.4, nested `*()` extglobs produce regexps with nested unbounded quantifiers (e.g. `(?:(?:a|b)*)*`), which exhibit catastrophic backtracking in V8. With a 12-byte pattern `*(*(*(a|b)))` and an 18-byte non-matching input, `minimatch()` stalls for over 7 seconds. Adding a single nesting level or a few input characters pushes this to minutes. This is the most severe finding: it is triggered by the default `minimatch()` API with no special options, and the minimum viable pattern is only 12 bytes. The same issue affects `+()` extglobs equally. Versions 10.2.3, 9.0.7, 8.0.6, 7.4.8, 6.2.2, 5.1.8, 4.2.5, and 3.1.4 fix the issue.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-1333"
+        ],
+        "VendorSeverity": {
+          "alma": 3,
+          "ghsa": 3,
+          "oracle-oval": 3,
+          "redhat": 2,
+          "rocky": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+            "V3Score": 7.5
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+            "V3Score": 6.5
+          }
+        },
+        "References": [
+          "https://access.redhat.com/errata/RHSA-2026:7896",
+          "https://access.redhat.com/security/cve/CVE-2026-27904",
+          "https://bugzilla.redhat.com/2441268",
+          "https://bugzilla.redhat.com/2442922",
+          "https://bugzilla.redhat.com/2448754",
+          "https://bugzilla.redhat.com/2453151",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2441268",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2442922",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2448754",
+          "https://bugzilla.redhat.com/show_bug.cgi?id=2453151",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-21710",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-26996",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27135",
+          "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-27904",
+          "https://errata.almalinux.org/9/ALSA-2026-7896.html",
+          "https://errata.rockylinux.org/RLSA-2026:7896",
+          "https://github.com/isaacs/minimatch",
+          "https://github.com/isaacs/minimatch/commit/11d0df6165d15a955462316b26d52e5efae06fce",
+          "https://github.com/isaacs/minimatch/security/advisories/GHSA-23c5-xmqv-rm74",
+          "https://linux.oracle.com/cve/CVE-2026-27904.html",
+          "https://linux.oracle.com/errata/ELSA-2026-8339.html",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-27904",
+          "https://www.cve.org/CVERecord?id=CVE-2026-27904"
+        ],
+        "PublishedDate": "2026-02-26T02:16:21.76Z",
+        "LastModifiedDate": "2026-02-27T17:16:23.773Z"
+      }
+    },
+    {
+      "id": "TRI-052C5558",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 6.1,
+      "title": "CVE-2026-23745 – node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
+      "description": "node-tar is a Tar for Node.js. The node-tar library (<= 7.5.2) fails to sanitize the linkpath of Link (hardlink) and SymbolicLink entries when preservePaths is false (the default secure behavior). This allows malicious archives to bypass the extraction root restriction, leading to Arbitrary File Overwrite via hardlinks and Symlink Poisoning via absolute symlink targets. This vulnerability is fixed in 7.5.3.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: tar v6.2.1 | Fix: 7.5.3",
+      "remediation": "Actualizar tar de 6.2.1 a 7.5.3",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-23745",
+        "VendorIDs": [
+          "GHSA-8qq5-rm4j-mr97"
+        ],
+        "PkgID": "tar@6.2.1",
+        "PkgName": "tar",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/tar@6.2.1",
+          "UID": "da51341d82b508b9"
+        },
+        "InstalledVersion": "6.2.1",
+        "FixedVersion": "7.5.3",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-23745",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:d5ce31d4cacf79f2c7971486e88d3ae653600bf8253d5895ca6fde49db4d0f48",
+        "Title": "node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
+        "Description": "node-tar is a Tar for Node.js. The node-tar library (<= 7.5.2) fails to sanitize the linkpath of Link (hardlink) and SymbolicLink entries when preservePaths is false (the default secure behavior). This allows malicious archives to bypass the extraction root restriction, leading to Arbitrary File Overwrite via hardlinks and Symlink Poisoning via absolute symlink targets. This vulnerability is fixed in 7.5.3.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-22"
+        ],
+        "VendorSeverity": {
+          "amazon": 3,
+          "ghsa": 3,
+          "nvd": 2,
+          "redhat": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:A/VC:H/VI:L/VA:N/SC:H/SI:L/SA:N",
+            "V40Score": 8.2
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N",
+            "V3Score": 6.1
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:H/I:H/A:H",
+            "V3Score": 8.2
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-23745",
+          "https://github.com/isaacs/node-tar",
+          "https://github.com/isaacs/node-tar/commit/340eb285b6d986e91969a1170d7fe9b0face405e",
+          "https://github.com/isaacs/node-tar/security/advisories/GHSA-8qq5-rm4j-mr97",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-23745",
+          "https://www.cve.org/CVERecord?id=CVE-2026-23745"
+        ],
+        "PublishedDate": "2026-01-16T22:16:26.83Z",
+        "LastModifiedDate": "2026-02-18T16:20:07.823Z"
+      }
+    },
+    {
+      "id": "TRI-19837964",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 5.9,
+      "title": "CVE-2026-23950 – node-tar: tar: node-tar: Arbitrary file overwrite via Unicode path collision race condition",
+      "description": "node-tar,a Tar for Node.js, has a race condition vulnerability in versions up to and including 7.5.3. This is due to an incomplete handling of Unicode path collisions in the `path-reservations` system. On case-insensitive or normalization-insensitive filesystems (such as macOS APFS, In which it has been tested), the library fails to lock colliding paths (e.g., `ß` and `ss`), allowing them to be processed in parallel. This bypasses the library's internal concurrency safeguards and permits Symlink Poisoning attacks via race conditions. The library uses a `PathReservations` system to ensure that metadata checks and file operations for the same path are serialized. This prevents race conditions where one entry might clobber another concurrently. This is a Race Condition which enables Arbitrary File Overwrite. This vulnerability affects users and systems using node-tar on macOS (APFS/HFS+). Because of using `NFD` Unicode normalization (in which `ß` and `ss` are different), conflicting paths do not have their order properly preserved under filesystems that ignore Unicode normalization (e.g., APFS (in which `ß` causes an inode collision with `ss`)). This enables an attacker to circumvent internal parallelization locks (`PathReservations`) using conflicting filenames within a malicious tar archive. The patch in version 7.5.4 updates `path-reservations.js` to use a normalization form that matches the target filesystem's behavior (e.g., `NFKD`), followed by first `toLocaleLowerCase('en')` and then `toLocaleUpperCase('en')`. As a workaround, users who cannot upgrade promptly, and who are programmatically using `node-tar` to extract arbitrary tarball data should filter out all `SymbolicLink` entries (as npm does) to defend against arbitrary file writes via this file system entry name collision issue.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: tar v6.2.1 | Fix: 7.5.4",
+      "remediation": "Actualizar tar de 6.2.1 a 7.5.4",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-23950",
+        "VendorIDs": [
+          "GHSA-r6q2-hw4h-h46w"
+        ],
+        "PkgID": "tar@6.2.1",
+        "PkgName": "tar",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/tar@6.2.1",
+          "UID": "da51341d82b508b9"
+        },
+        "InstalledVersion": "6.2.1",
+        "FixedVersion": "7.5.4",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-23950",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:c1a4a849fae5eb4cb90539e642d1e191bef46edd0a846c89b83197a8b4f35601",
+        "Title": "node-tar: tar: node-tar: Arbitrary file overwrite via Unicode path collision race condition",
+        "Description": "node-tar,a Tar for Node.js, has a race condition vulnerability in versions up to and including 7.5.3. This is due to an incomplete handling of Unicode path collisions in the `path-reservations` system. On case-insensitive or normalization-insensitive filesystems (such as macOS APFS, In which it has been tested), the library fails to lock colliding paths (e.g., `ß` and `ss`), allowing them to be processed in parallel. This bypasses the library's internal concurrency safeguards and permits Symlink Poisoning attacks via race conditions. The library uses a `PathReservations` system to ensure that metadata checks and file operations for the same path are serialized. This prevents race conditions where one entry might clobber another concurrently. This is a Race Condition which enables Arbitrary File Overwrite. This vulnerability affects users and systems using node-tar on macOS (APFS/HFS+). Because of using `NFD` Unicode normalization (in which `ß` and `ss` are different), conflicting paths do not have their order properly preserved under filesystems that ignore Unicode normalization (e.g., APFS (in which `ß` causes an inode collision with `ss`)). This enables an attacker to circumvent internal parallelization locks (`PathReservations`) using conflicting filenames within a malicious tar archive. The patch in version 7.5.4 updates `path-reservations.js` to use a normalization form that matches the target filesystem's behavior (e.g., `NFKD`), followed by first `toLocaleLowerCase('en')` and then `toLocaleUpperCase('en')`. As a workaround, users who cannot upgrade promptly, and who are programmatically using `node-tar` to extract arbitrary tarball data should filter out all `SymbolicLink` entries (as npm does) to defend against arbitrary file writes via this file system entry name collision issue.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-176",
+          "CWE-352",
+          "CWE-367"
+        ],
+        "VendorSeverity": {
+          "amazon": 3,
+          "ghsa": 3,
+          "nvd": 2,
+          "redhat": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L",
+            "V3Score": 8.8
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:H/A:N",
+            "V3Score": 5.9
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:H/A:L",
+            "V3Score": 8.8
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-23950",
+          "https://github.com/isaacs/node-tar",
+          "https://github.com/isaacs/node-tar/commit/3b1abfae650056edfabcbe0a0df5954d390521e6",
+          "https://github.com/isaacs/node-tar/security/advisories/GHSA-r6q2-hw4h-h46w",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-23950",
+          "https://www.cve.org/CVERecord?id=CVE-2026-23950"
+        ],
+        "PublishedDate": "2026-01-20T01:15:57.87Z",
+        "LastModifiedDate": "2026-02-18T15:50:29.91Z"
+      }
+    },
+    {
+      "id": "TRI-DF29B2A1",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 8.2,
+      "title": "CVE-2026-24842 – node-tar: tar: node-tar: Arbitrary file creation via path traversal bypass in hardlink security check",
+      "description": "node-tar,a Tar for Node.js, contains a vulnerability in versions prior to 7.5.7 where the security check for hardlink entries uses different path resolution semantics than the actual hardlink creation logic. This mismatch allows an attacker to craft a malicious TAR archive that bypasses path traversal protections and creates hardlinks to arbitrary files outside the extraction directory. Version 7.5.7 contains a fix for the issue.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: tar v6.2.1 | Fix: 7.5.7",
+      "remediation": "Actualizar tar de 6.2.1 a 7.5.7",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-24842",
+        "VendorIDs": [
+          "GHSA-34x7-hfp2-rc4v"
+        ],
+        "PkgID": "tar@6.2.1",
+        "PkgName": "tar",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/tar@6.2.1",
+          "UID": "da51341d82b508b9"
+        },
+        "InstalledVersion": "6.2.1",
+        "FixedVersion": "7.5.7",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-24842",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:30bec67266305e00d0486000937d21c5b8b1f1b06576d526817a3f0a6a744f87",
+        "Title": "node-tar: tar: node-tar: Arbitrary file creation via path traversal bypass in hardlink security check",
+        "Description": "node-tar,a Tar for Node.js, contains a vulnerability in versions prior to 7.5.7 where the security check for hardlink entries uses different path resolution semantics than the actual hardlink creation logic. This mismatch allows an attacker to craft a malicious TAR archive that bypasses path traversal protections and creates hardlinks to arbitrary files outside the extraction directory. Version 7.5.7 contains a fix for the issue.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-22",
+          "CWE-59"
+        ],
+        "VendorSeverity": {
+          "amazon": 3,
+          "ghsa": 3,
+          "redhat": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N",
+            "V3Score": 8.2
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:L/A:N",
+            "V3Score": 8.2
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-24842",
+          "https://github.com/isaacs/node-tar",
+          "https://github.com/isaacs/node-tar/commit/f4a7aa9bc3d717c987fdf1480ff7a64e87ffdb46",
+          "https://github.com/isaacs/node-tar/security/advisories/GHSA-34x7-hfp2-rc4v",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-24842",
+          "https://www.cve.org/CVERecord?id=CVE-2026-24842"
+        ],
+        "PublishedDate": "2026-01-28T01:16:14.947Z",
+        "LastModifiedDate": "2026-02-02T14:30:10.89Z"
+      }
+    },
+    {
+      "id": "TRI-6CEAF1CD",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 7.1,
+      "title": "CVE-2026-26960 – node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation",
+      "description": "node-tar is a full-featured Tar for Node.js. When using default options in versions 7.5.7 and below, an attacker-controlled archive can create a hardlink inside the extraction directory that points to a file outside the extraction root, enabling arbitrary file read and write as the extracting user. Severity is high because the primitive bypasses path protections and turns archive extraction into a direct filesystem access primitive. This issue has been fixed in version 7.5.8.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: tar v6.2.1 | Fix: 7.5.8",
+      "remediation": "Actualizar tar de 6.2.1 a 7.5.8",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-26960",
+        "VendorIDs": [
+          "GHSA-83g3-92jg-28cx"
+        ],
+        "PkgID": "tar@6.2.1",
+        "PkgName": "tar",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/tar@6.2.1",
+          "UID": "da51341d82b508b9"
+        },
+        "InstalledVersion": "6.2.1",
+        "FixedVersion": "7.5.8",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-26960",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:1eeeec2eacae438fd38ecdda37d0ea06c3c11f79a23ea1a9ba4581679486870f",
+        "Title": "node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation",
+        "Description": "node-tar is a full-featured Tar for Node.js. When using default options in versions 7.5.7 and below, an attacker-controlled archive can create a hardlink inside the extraction directory that points to a file outside the extraction root, enabling arbitrary file read and write as the extracting user. Severity is high because the primitive bypasses path protections and turns archive extraction into a direct filesystem access primitive. This issue has been fixed in version 7.5.8.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-22"
+        ],
+        "VendorSeverity": {
+          "amazon": 3,
+          "ghsa": 3,
+          "nvd": 3,
+          "redhat": 2
+        },
+        "CVSS": {
+          "ghsa": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+            "V3Score": 7.1
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+            "V3Score": 7.1
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+            "V3Score": 7.1
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-26960",
+          "https://github.com/isaacs/node-tar",
+          "https://github.com/isaacs/node-tar/commit/2cb1120bcefe28d7ecc719b41441ade59c52e384",
+          "https://github.com/isaacs/node-tar/commit/d18e4e1f846f4ddddc153b0f536a19c050e7499f",
+          "https://github.com/isaacs/node-tar/security/advisories/GHSA-83g3-92jg-28cx",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-26960",
+          "https://www.cve.org/CVERecord?id=CVE-2026-26960"
+        ],
+        "PublishedDate": "2026-02-20T02:16:53.883Z",
+        "LastModifiedDate": "2026-02-20T19:24:16.537Z"
+      }
+    },
+    {
+      "id": "TRI-810F264E",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 6.3,
+      "title": "CVE-2026-29786 – node-tar: hardlink path traversal via drive-relative linkpath",
+      "description": "node-tar is a full-featured Tar for Node.js. Prior to version 7.5.10, tar can be tricked into creating a hardlink that points outside the extraction directory by using a drive-relative link target such as C:../target.txt, which enables file overwrite outside cwd during normal tar.x() extraction. This issue has been patched in version 7.5.10.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: tar v6.2.1 | Fix: 7.5.10",
+      "remediation": "Actualizar tar de 6.2.1 a 7.5.10",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-29786",
+        "VendorIDs": [
+          "GHSA-qffp-2rhf-9h96"
+        ],
+        "PkgID": "tar@6.2.1",
+        "PkgName": "tar",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/tar@6.2.1",
+          "UID": "da51341d82b508b9"
+        },
+        "InstalledVersion": "6.2.1",
+        "FixedVersion": "7.5.10",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-29786",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:0f7d21db4b64318468ab767e9c9d1e994f08da5efb5ec2b8457474c5c5ee0508",
+        "Title": "node-tar: hardlink path traversal via drive-relative linkpath",
+        "Description": "node-tar is a full-featured Tar for Node.js. Prior to version 7.5.10, tar can be tricked into creating a hardlink that points outside the extraction directory by using a drive-relative link target such as C:../target.txt, which enables file overwrite outside cwd during normal tar.x() extraction. This issue has been patched in version 7.5.10.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-22",
+          "CWE-59"
+        ],
+        "VendorSeverity": {
+          "amazon": 2,
+          "ghsa": 3,
+          "nvd": 2,
+          "redhat": 3
+        },
+        "CVSS": {
+          "ghsa": {
+            "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:P/VC:N/VI:H/VA:L/SC:N/SI:H/SA:L",
+            "V40Score": 8.2
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:N/I:H/A:N",
+            "V3Score": 6.3
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:H/A:N",
+            "V3Score": 8.6
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-29786",
+          "https://github.com/isaacs/node-tar",
+          "https://github.com/isaacs/node-tar/commit/7bc755dd85e623c0279e08eb3784909e6d7e4b9f",
+          "https://github.com/isaacs/node-tar/security/advisories/GHSA-qffp-2rhf-9h96",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-29786",
+          "https://www.cve.org/CVERecord?id=CVE-2026-29786"
+        ],
+        "PublishedDate": "2026-03-07T16:15:55.587Z",
+        "LastModifiedDate": "2026-03-11T21:50:01.91Z"
+      }
+    },
+    {
+      "id": "TRI-26714757",
+      "tool": "trivy",
+      "tool_type": "SCA",
+      "asc_id": "ASC-SCA-001",
+      "severity": "HIGH",
+      "cvss_score": 5.5,
+      "title": "CVE-2026-31802 – tar: tar: File overwrite via drive-relative symlink traversal",
+      "description": "node-tar is a full-featured Tar for Node.js. Prior to version 7.5.11, tar (npm) can be tricked into creating a symlink that points outside the extraction directory by using a drive-relative symlink target such as C:../../../target.txt, which enables file overwrite outside cwd during normal tar.x() extraction. This vulnerability is fixed in 7.5.11.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": null,
+      "location": {
+        "file": "Node.js",
+        "line": null,
+        "endpoint": null,
+        "method": null
+      },
+      "evidence": "Paquete: tar v6.2.1 | Fix: 7.5.11",
+      "remediation": "Actualizar tar de 6.2.1 a 7.5.11",
+      "raw": {
+        "VulnerabilityID": "CVE-2026-31802",
+        "VendorIDs": [
+          "GHSA-9ppj-qmqm-q256"
+        ],
+        "PkgID": "tar@6.2.1",
+        "PkgName": "tar",
+        "PkgPath": "usr/local/lib/node_modules/npm/node_modules/tar/package.json",
+        "PkgIdentifier": {
+          "PURL": "pkg:npm/tar@6.2.1",
+          "UID": "da51341d82b508b9"
+        },
+        "InstalledVersion": "6.2.1",
+        "FixedVersion": "7.5.11",
+        "Status": "fixed",
+        "Layer": {
+          "DiffID": "sha256:4983b93ee7967564f02cbf6162b75010ce557404a539fba05ee19a0eae01acbc"
+        },
+        "SeveritySource": "ghsa",
+        "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-31802",
+        "DataSource": {
+          "ID": "ghsa",
+          "Name": "GitHub Security Advisory npm",
+          "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Anpm"
+        },
+        "Fingerprint": "sha256:d7bbe698b68a56ea56bcb6d61a561bc5a3ce2c86803b36cb5549691cff03423b",
+        "Title": "tar: tar: File overwrite via drive-relative symlink traversal",
+        "Description": "node-tar is a full-featured Tar for Node.js. Prior to version 7.5.11, tar (npm) can be tricked into creating a symlink that points outside the extraction directory by using a drive-relative symlink target such as C:../../../target.txt, which enables file overwrite outside cwd during normal tar.x() extraction. This vulnerability is fixed in 7.5.11.",
+        "Severity": "HIGH",
+        "CweIDs": [
+          "CWE-22"
+        ],
+        "VendorSeverity": {
+          "ghsa": 3,
+          "nvd": 2,
+          "redhat": 2
+        },
+        "CVSS": {
+          "ghsa": {
+            "V40Vector": "CVSS:4.0/AV:L/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:H/SA:N",
+            "V40Score": 8.2
+          },
+          "nvd": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:N",
+            "V3Score": 5.5
+          },
+          "redhat": {
+            "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+            "V3Score": 6.2
+          }
+        },
+        "References": [
+          "https://access.redhat.com/security/cve/CVE-2026-31802",
+          "https://github.com/isaacs/node-tar",
+          "https://github.com/isaacs/node-tar/commit/f48b5fa3b7985ddab96dc0f2125a4ffc9911b6ad",
+          "https://github.com/isaacs/node-tar/security/advisories/GHSA-9ppj-qmqm-q256",
+          "https://nvd.nist.gov/vuln/detail/CVE-2026-31802",
+          "https://www.cve.org/CVERecord?id=CVE-2026-31802"
+        ],
+        "PublishedDate": "2026-03-10T07:44:58.02Z",
+        "LastModifiedDate": "2026-03-18T18:13:34.703Z"
+      }
+    },
+    {
+      "id": "ZAP-3BC540F8",
+      "tool": "zap",
+      "tool_type": "DAST",
+      "asc_id": "ASC-DAST-001",
+      "severity": "LOW",
+      "cvss_score": null,
+      "title": "Cross-Origin-Resource-Policy Header Missing or Invalid",
+      "description": "Cross-Origin-Resource-Policy header is an opt-in header designed to counter side-channels attacks like Spectre. Resource should be specifically set as shareable amongst different origins.",
+      "category": "A05:2021 – Security Misconfiguration",
+      "cwe": "693",
+      "location": {
+        "file": null,
+        "line": null,
+        "endpoint": "http://localhost:3000",
+        "method": "GET"
+      },
+      "evidence": "Detectado en 2 URLs: http://localhost:3000, http://localhost:3000/",
+      "remediation": "Ensure that the application/web server sets the Cross-Origin-Resource-Policy header appropriately, and that it sets the Cross-Origin-Resource-Policy header to 'same-origin' for all web pages. 'same-site' is considered as less secured and should be avoided. If resources must be shared, set the header to 'cross-origin'. If possible, ensure that the end user uses a standards-compliant and modern web ",
+      "instances_count": 2,
+      "raw": {
+        "alert_id": "90004",
+        "instances_count": 2,
+        "confidence": "2",
+        "reference": "<p>https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cross-Origin-Embedder-Policy</p>",
+        "all_urls": [
+          "http://localhost:3000",
+          "http://localhost:3000/"
+        ]
+      }
+    },
+    {
+      "id": "ZAP-73B580AD",
+      "tool": "zap",
+      "tool_type": "DAST",
+      "asc_id": "ASC-DAST-001",
+      "severity": "INFO",
+      "cvss_score": null,
+      "title": "Non-Storable Content",
+      "description": "The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.",
+      "category": "A06:2021 – Vulnerable and Outdated Components",
+      "cwe": "524",
+      "location": {
+        "file": null,
+        "line": null,
+        "endpoint": "http://localhost:3000",
+        "method": "GET"
+      },
+      "evidence": "Detectado en 4 URLs: http://localhost:3000, http://localhost:3000/, http://localhost:3000/robots.txt, http://localhost:3000/sitemap.xml",
+      "remediation": "The content may be marked as storable by ensuring that the following conditions are satisfied: The request method must be understood by the cache and defined as being cacheable (\"GET\", \"HEAD\", and \"POST\" are currently defined as cacheable) The response status code must be understood by the cache (one of the 1XX, 2XX, 3XX, 4XX, or 5XX response classes are generally understood) The \"no-store\" cache ",
+      "instances_count": 4,
+      "raw": {
+        "alert_id": "10049",
+        "instances_count": 4,
+        "confidence": "2",
+        "reference": "<p>https://datatracker.ietf.org/doc/html/rfc7234</p><p>https://datatracker.ietf.org/doc/html/rfc7231</p><p>https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html</p>",
+        "all_urls": [
+          "http://localhost:3000",
+          "http://localhost:3000/",
+          "http://localhost:3000/robots.txt",
+          "http://localhost:3000/sitemap.xml"
+        ]
+      }
+    },
+    {
+      "id": "NUC-61DF2F45",
+      "tool": "nuclei",
+      "tool_type": "PENTEST",
+      "asc_id": "ASC-PENTEST-001",
+      "severity": "LOW",
+      "cvss_score": null,
+      "title": "XSS-Protection Header - Cross-Site Scripting",
+      "description": "Setting the XSS-Protection header is deprecated. Setting the header to anything other than `0` can actually introduce an XSS vulnerability.",
+      "category": "A03:2021 – Injection",
+      "cwe": null,
+      "location": {
+        "file": null,
+        "line": null,
+        "endpoint": "http://localhost:3000",
+        "method": "HTTP"
+      },
+      "evidence": "Datos extraídos: 1; mode=block",
+      "remediation": "Revisar: Setting the XSS-Protection header is deprecated. Setting the header to anything other than `0` can actually introduce an XSS vulnerability.",
+      "raw": {
+        "template_id": "xss-deprecated-header",
+        "matcher_name": "",
+        "tags": [
+          "xss",
+          "misconfig",
+          "generic",
+          "vuln"
+        ],
+        "reference": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection",
+        "timestamp": "2026-05-21T21:10:08.832579679Z"
+      }
+    },
+    {
+      "id": "NUC-874D44CD",
+      "tool": "nuclei",
+      "tool_type": "PENTEST",
+      "asc_id": "ASC-PENTEST-001",
+      "severity": "LOW",
+      "cvss_score": null,
+      "title": "HTTP Missing Security Headers",
+      "description": "This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+      "category": "A05:2021 – Security Misconfiguration",
+      "cwe": null,
+      "location": {
+        "file": null,
+        "line": null,
+        "endpoint": "http://localhost:3000",
+        "method": "HTTP"
+      },
+      "evidence": "curl -X 'GET' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36' 'http://l",
+      "remediation": "Revisar: This template searches for missing HTTP security headers. The impact of these missing headers can vary.\n",
+      "raw": {
+        "template_id": "http-missing-security-headers",
+        "matcher_name": "x-permitted-cross-domain-policies",
+        "tags": [
+          "misconfig",
+          "headers",
+          "generic",
+          "vuln"
+        ],
+        "reference": "",
+        "timestamp": "2026-05-21T21:10:48.825043917Z"
+      }
+    }
+  ],
+  "tools_executed": {
+    "semgrep": 0,
+    "trivy": 13,
+    "zap": 2,
+    "nuclei": 9
+  }
+}
