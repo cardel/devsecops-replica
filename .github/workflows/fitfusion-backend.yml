@@ -1,0 +1,53 @@
+name: Replica FitFusion Backend
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.meta.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ManuelArango1229/Backend-FitFusion
+          ref: fb47b6814fd565ed21b0f2cbffae5e6fefd35cbe
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        run: echo "image=ghcr.io/${{ github.repository_owner }}/fitfusion-backend:fb47b6814fd565ed21b0f2cbffae5e6fefd35cbe" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.image }}
+
+  security:
+    needs: build-image
+    uses: cardel/devsecops-engine-/.github/workflows/reusable-devsecops.yml@cc668ce9bf8c4eb319b8a69b71e6d43c74bd99d5
+    with:
+      target_image:    ${{ needs.build-image.outputs.image }}
+      target_port:     '3000'
+      service_name:    'fitfusion-backend'
+      criticality:     'high'
+      environment:     'staging'
+      source_repo:     'ManuelArango1229/Backend-FitFusion'
+      source_repo_ref: 'fb47b6814fd565ed21b0f2cbffae5e6fefd35cbe'
+      language:        'nodejs'
+      use_ghcr:        true
+    secrets:
+      GROQ_API_KEY:   ${{ secrets.GROQ_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GHCR_TOKEN:     ${{ secrets.GITHUB_TOKEN }}
+      APP_SECRETS:    ${{ secrets.FITFUSION_APP_SECRETS }}
