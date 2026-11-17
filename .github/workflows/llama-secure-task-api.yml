@@ -1,0 +1,52 @@
+name: Replica LLaMA SecureTaskAPI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.meta.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ManuelArango1229/SecureTaskAPI
+          ref: 00ec37ff7e3fd094ba747daa4c489f14c20573c9
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        run: echo "image=ghcr.io/${{ github.repository_owner }}/securetaskapi:00ec37ff7e3fd094ba747daa4c489f14c20573c9" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.image }}
+
+  security:
+    needs: build-image
+    uses: cardel/devsecops-engine-/.github/workflows/reusable-devsecops.yml@f1317216adb0b9a1473ed7aaa8ff0cc323692d0d
+    with:
+      target_image:    ${{ needs.build-image.outputs.image }}
+      target_port:     '3000'
+      service_name:    'secure-task-api'
+      criticality:     'medium'
+      environment:     'staging'
+      source_repo:     'ManuelArango1229/SecureTaskAPI'
+      source_repo_ref: '00ec37ff7e3fd094ba747daa4c489f14c20573c9'
+      language:        'nodejs'
+      use_ghcr:        true
+    secrets:
+      GROQ_API_KEY:   ${{ secrets.OPENROUTER_API_KEY }}
+      GHCR_TOKEN:     ${{ secrets.GITHUB_TOKEN }}
+      APP_SECRETS:    "JWT_SECRET=s3cur3-r4nd0m-64ch4r-s3cr3t-4-t3s1s-un1v4ll3-2026"

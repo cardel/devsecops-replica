@@ -1,0 +1,51 @@
+name: Replica LLaMA SimpleHealthAPI
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.meta.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ManuelArango1229/SimpleHealthAPI
+          ref: 1fdabff6cb4e4de63fe0f04851baed094e129479
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        run: echo "image=ghcr.io/${{ github.repository_owner }}/simplehealthapi:1fdabff6cb4e4de63fe0f04851baed094e129479" >> "$GITHUB_OUTPUT"
+
+      - uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.image }}
+
+  security:
+    needs: build-image
+    uses: cardel/devsecops-engine-/.github/workflows/reusable-devsecops.yml@f1317216adb0b9a1473ed7aaa8ff0cc323692d0d
+    with:
+      target_image:    ${{ needs.build-image.outputs.image }}
+      target_port:     '3000'
+      service_name:    'simple-health-api'
+      criticality:     'low'
+      environment:     'staging'
+      source_repo:     'ManuelArango1229/SimpleHealthAPI'
+      source_repo_ref: '1fdabff6cb4e4de63fe0f04851baed094e129479'
+      language:        'nodejs'
+      use_ghcr:        true
+    secrets:
+      GROQ_API_KEY:   ${{ secrets.OPENROUTER_API_KEY }}
+      GHCR_TOKEN:     ${{ secrets.GITHUB_TOKEN }}

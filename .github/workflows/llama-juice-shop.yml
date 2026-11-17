@@ -1,0 +1,21 @@
+name: Replica LLaMA Juice Shop
+
+on:
+  workflow_dispatch:
+
+jobs:
+  security:
+    uses: cardel/devsecops-engine-/.github/workflows/reusable-devsecops.yml@f1317216adb0b9a1473ed7aaa8ff0cc323692d0d
+    with:
+      target_image:    'bkimminich/juice-shop:latest'
+      target_port:     '3000'
+      service_name:    'juice-shop'
+      criticality:     'high'
+      environment:     'staging'
+      source_repo:     'ManuelArango1229/juice-shopForkTG'
+      source_repo_ref: 'master'
+      language:        'nodejs'
+      use_ghcr:        false
+    secrets:
+      GROQ_API_KEY:   ${{ secrets.OPENROUTER_API_KEY }}
+      GHCR_TOKEN:     ${{ secrets.GITHUB_TOKEN }}
