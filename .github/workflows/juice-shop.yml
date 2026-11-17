@@ -1,0 +1,22 @@
+name: Replica Juice Shop
+
+on:
+  workflow_dispatch:
+
+jobs:
+  security:
+    uses: ManuelArango1229/devsecops-engine-/.github/workflows/reusable-devsecops.yml@1aeabed6daa45e5ab0ad49859f4a7178d733ac8e
+    with:
+      target_image:    'bkimminich/juice-shop:latest'
+      target_port:     '3000'
+      service_name:    'juice-shop'
+      criticality:     'high'
+      environment:     'staging'
+      source_repo:     'ManuelArango1229/juice-shopForkTG'
+      source_repo_ref: 'master'
+      language:        'nodejs'
+      use_ghcr:        false
+    secrets:
+      GROQ_API_KEY:   ${{ secrets.GROQ_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GHCR_TOKEN:     ${{ secrets.GITHUB_TOKEN }}
