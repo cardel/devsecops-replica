@@ -5,7 +5,7 @@ on:
 
 jobs:
   security:
-    uses: cardel/devsecops-engine-/.github/workflows/reusable-devsecops.yml@027271f45f62514e43cfcbfe4a1635493f5edfe0
+    uses: cardel/devsecops-engine-/.github/workflows/reusable-devsecops.yml@cc668ce9bf8c4eb319b8a69b71e6d43c74bd99d5
     with:
       target_image:    'bkimminich/juice-shop:latest'
       target_port:     '3000'
