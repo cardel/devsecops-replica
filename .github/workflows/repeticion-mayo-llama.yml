@@ -1,0 +1,63 @@
+name: Repeticion IA sobre hallazgos de mayo con LLaMA 3.3 70B
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluar:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        corrida: [1, 2, 3, 4, 5]
+        caso:
+          - { nombre: juice-shop,        criticidad: high }
+          - { nombre: fitfusion-backend, criticidad: high }
+          - { nombre: secure-task-api,   criticidad: medium }
+          - { nombre: simple-health-api, criticidad: low }
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: cardel/devsecops-engine-
+          ref: 89e0fd64e3a6e2b072a9ca00454e044eda9db946
+          path: engine
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Dependencias del motor
+        run: pip install -q -r engine/requirements.txt
+
+      - name: Gate SSVC y evaluacion IA, como en el flujo del motor
+        working-directory: engine
+        env:
+          GROQ_API_KEY:        ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_BASE_URL:       https://openrouter.ai/api/v1
+          GROQ_MODEL:          meta-llama/llama-3.3-70b-instruct
+          GROQ_PROVIDER_LABEL: openrouter
+        run: |
+          mkdir -p results
+          cp ../mayo/${{ matrix.caso.nombre }}/findings.json results/findings.json
+          python scripts/ssvc_gate.py results/findings.json "${{ matrix.caso.criticidad }}" \
+            > results/ssvc_result.json 2>/dev/null || echo '{}' > results/ssvc_result.json
+          python scripts/ai_engine.py \
+            --findings    results/findings.json \
+            --service     "${{ matrix.caso.nombre }}" \
+            --criticality "${{ matrix.caso.criticidad }}" \
+            --environment "staging" \
+            --output      results/ai_evaluation.json 2>&1 | tee results/ai_engine.log
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: llama-${{ matrix.caso.nombre }}-run-${{ matrix.corrida }}
+          path: |
+            engine/results/ai_evaluation.json
+            engine/results/ssvc_result.json
+            engine/results/ai_engine.log
