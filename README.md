@@ -1,15 +1,19 @@
 # devsecops-replica
 
-Corridas de réplica del flujo reutilizable `ManuelArango1229/devsecops-engine-`
-sobre los casos de estudio del artículo de
-Arango, Castaño y Delgado. Cada archivo de `.github/workflows/` lanza un caso a
-mano con los mismos parámetros que usó el repositorio original.
+Workflows that replicate the evaluation reported in the article *Comparing
+Threshold LLM and SSVC Security Gates in a Reusable DevSecOps Pipeline*.
 
-Los reportes de cada corrida se bajan a
-`papers-project/papers/security-arango-castano/data/`.
+Each file in `.github/workflows/` runs one study case by hand with the
+parameters of the original campaign. The reusable workflow comes from the fork
+`cardel/devsecops-engine-`, branch `replica-trivy-keyring`. That branch differs
+from commit `1aeabed` of the original engine in three points: the Trivy
+installation registers its signing key in a keyring, the address and name of
+the primary model are read from environment variables, and the evaluation job
+takes its scripts from the fork.
 
-El flujo se toma de la bifurcación `cardel/devsecops-engine-`, rama
-`replica-trivy-keyring`, que difiere del commit `1aeabed` del original en un
-solo paso: la instalación de Trivy registra la llave en un keyring, porque el
-ejecutor `ubuntu-latest` ya no trae `apt-key`. Los guiones del motor se siguen
-clonando del repositorio original.
+`mayo/` holds the normalized findings of the original campaign for four cases;
+the workflows `repeticion-mayo*.yml` repeat the AI evaluation over them.
+
+The results of every run are in the folder `replication/` of that branch of the
+fork. The workflows read API keys and application secrets from repository
+secrets, which are not part of this repository.
